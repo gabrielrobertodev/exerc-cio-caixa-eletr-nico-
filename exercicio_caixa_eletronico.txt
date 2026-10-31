@@ -1,0 +1,53 @@
+
+#include <stdio.h>
+
+int main()
+{
+   int valor_saque;
+   int saldo = 850; // Saldo de exemplo disponível na conta
+   int resto, n100, n50, n20, n10, n5;
+   
+   printf("Digite o valor do saque:");
+   scanf("%d", &valor_saque);
+   
+   // Validação de segurança e regras do negócio
+    if (valor_saque <= saldo && valor_saque % 5 == 0 && valor_saque > 0) {
+        
+        // --- CÁLCULO DAS NOTAS ---
+        resto = valor_saque;
+
+        n100 = resto / 100;
+        resto = resto % 100;
+
+        n50 = resto / 50;
+        resto = resto % 50;
+
+        n20 = resto / 20;
+        resto = resto % 20;
+
+        n10 = resto / 10;
+        resto = resto % 10;
+
+        n5 = resto / 5;
+        
+        // --- IMPRIMIR NOTAS ENTREGUES ---
+        printf("Notas entregues:\n");
+        if (n100 > 0) printf("%d nota(s) de 100\n", n100);
+        if (n50 > 0)  printf("%d nota(s) de 50\n", n50);
+        if (n20 > 0)  printf("%d nota(s) de 20\n", n20);
+        if (n10 > 0)  printf("%d nota(s) de 10\n", n10);
+        if (n5 > 0)   printf("%d nota(s) de 5\n", n5);
+    }
+    
+    else {
+        if (valor_saque > saldo) {
+            printf("Erro: Saldo insuficiente.\n");
+        } 
+        else {
+            printf("Erro: O valor do saque deve ser positivo e multiplo de 5.\n");
+        }
+    }
+    
+    
+    return 0;
+}
